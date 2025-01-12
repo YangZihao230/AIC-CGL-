@@ -18,15 +18,15 @@ This is the official implementation of our work entitled as ```Universal Fine-Gr
 
 In this work, the proposed ```FGLCD``` makes the following advancement compared with the previous ```Million-AID```:
 
--
+- manually select and correct the annotation of the samples
 
--
-
--
+- enlarge the size of benchmark: a total of 59994 samples (29998 for training, 29996 for testing)
 
 ## Fine-grained Land-Cover Dataset (FGLCD) Overview
 
-This is the first dataset for the task of fine-grained land-cover scene classification. Different from conventional remote sensing scene classification datasets, such as ```UCM```, ```AID``` and ```NWPU```, the  
+This is the first dataset for the task of fine-grained land-cover scene classification. Different from conventional remote sensing scene classification datasets, such as ```UCM```, ```AID``` and ```NWPU```, the fine-grained categorization strictly follows the land-use classification standards *[GB/T 21010-2017](https://www.chinesestandard.net/PDF/English.aspx/GBT21010-2017)*. 
+
+It has a total of 51 geo-spatial fine-grained categories from 8 coarse-grained categories.
 
 ## Citation
 
