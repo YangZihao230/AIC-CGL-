@@ -4,6 +4,10 @@ This is the official implementation of our work entitled as ```Universal Fine-Gr
 
 ## Fine-grained Land-Cover Dataset (FGLCD) Download
 
+For ```GoogleDrive``` user, please download by
+
+For ```BaiduDrive``` user, please download by
+
 ## Relation to the Existing Million-AID dataset 
 
 ## Fine-grained Land-Cover Dataset (FGLCD) Overview
