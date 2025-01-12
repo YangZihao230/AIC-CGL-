@@ -58,6 +58,10 @@ The training and inference command is:
 
 Please remember to change the file folder to your own in the ```.yaml``` file.
 
+## Acknowledgement
+
+The development of ```CGL``` largely relies on the source code from ```FGVC-PIM```, with the code link [https://github.com/chou141253/FGVC-PIM]. We sincerely appreciate the authors of ```A Novel Plug-in Module for Fine-grained Visual Classification``` to advance fine-grained visual categorization. 
+
 ## Citation
 
 If you find this work useful for your research, please cite our work as follows:
