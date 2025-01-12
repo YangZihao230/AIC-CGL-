@@ -24,7 +24,7 @@ In this work, the proposed ```FGLCD``` makes the following advancement compared 
 
 ## Fine-grained Land-Cover Dataset (FGLCD) Overview
 
-![avatar](/overviewdataset.png)
+![avatar](/FGLCDfull.png)
 
 - The first dataset for the task of fine-grained land-cover scene classification. Different from conventional remote sensing scene classification datasets, such as ```UCM```, ```AID``` and ```NWPU```, the fine-grained categorization strictly follows the land-use classification standards *[GB/T 21010-2017](https://www.chinesestandard.net/PDF/English.aspx/GBT21010-2017)*. 
 
