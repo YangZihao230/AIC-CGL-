@@ -10,7 +10,9 @@ For ```BaiduDrive``` user, please download by
 
 ## Relation to the Existing Million-AID dataset 
 
-Million-AID dataset has about one million aerial scene samples from high-resolution satellite images from a variety of imaging sensors (e.g., worldview-2, Gaofen-2, and etc.) in total, but most of the samples in million-AID are annotated automatically or semi-automatically, i.e., without human-level supervision.
+Million-AID dataset has about one million aerial scene samples from high-resolution satellite images from a variety of imaging sensors (e.g., worldview-2, Gaofen-2, and etc.) in total, but the weakness includes:
+
+most of the samples in million-AID are annotated automatically or semi-automatically, i.e., without human-level supervision.
 
 Besides, only about 10,000 samples have the publicly-available ground truth, which poses a bottleneck on the amount of training data.
 
