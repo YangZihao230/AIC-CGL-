@@ -30,6 +30,10 @@ In this work, the proposed ```FGLCD``` makes the following advancement compared 
 
 - A total of 59994 samples (29998 for training, 29996 for testing).
 
+## Implementation of Concept Guided Learning (CGL)
+
+
+
 ## Citation
 
 If you find this work useful for your research, please cite our work as follows:
