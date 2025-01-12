@@ -4,6 +4,8 @@ This is the official implementation of our work entitled as ```Universal Fine-Gr
 
 ## Fine-grained Land-Cover Dataset (FGLCD) Download
 
+## Relation to the Existing Million-AID dataset 
+
 ## Fine-grained Land-Cover Dataset (FGLCD) Overview
 
-This is the first dataset for the task of fine-grained land-cover scene classification. Different from conventional remote sensing scene classification datasets, such as 
+This is the first dataset for the task of fine-grained land-cover scene classification. Different from conventional remote sensing scene classification datasets, such as ```UCM```, ```AID``` and ```NWPU```, the  
