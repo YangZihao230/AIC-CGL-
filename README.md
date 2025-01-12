@@ -17,3 +17,18 @@ Besides, only about 10,000 samples have the publicly-available ground truth, whi
 ## Fine-grained Land-Cover Dataset (FGLCD) Overview
 
 This is the first dataset for the task of fine-grained land-cover scene classification. Different from conventional remote sensing scene classification datasets, such as ```UCM```, ```AID``` and ```NWPU```, the  
+
+## Cite the proposed Samba
+
+If you find this work useful for your research, please cite our work as follows:
+
+```BibTeX
+@article{bi2025universal,
+  title={Universal Fine-grained Visual Categorization by Concept Guided Learning},
+  author={Bi, Qi and Yi, Jingjun and Zhan, Haolan and Wei, Ji and Xia, Gui-Song},
+  journal={IEEE Transactions on Image Processing},
+  volume={34},
+  year={2025}
+}
+```
+
