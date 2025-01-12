@@ -6,7 +6,7 @@ This is the official implementation of our work entitled as ```Universal Fine-Gr
 
 - For ```GoogleDrive``` user, please click *[here](https://drive.google.com/file/d/11hYbdO32hyspucDKp5wwjwvCaD38AEKe/view?usp=sharing)* to download.
 
-- For ```BaiduDrive``` user, please click to download. (to be updated soon)
+- For ```BaiduDrive``` user, please click *[here](https://pan.baidu.com/s/1uJc9WVgmi1Q5vF-b7eHnOg?pwd=8enw)* to download. (to be updated soon)
 
 ## Relation to the Existing Million-AID dataset 
 
