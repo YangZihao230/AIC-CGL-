@@ -10,7 +10,7 @@ For ```BaiduDrive``` user, please download by
 
 ## Relation to the Existing Million-AID dataset 
 
-Million-AID dataset has about one million aerial scene samples from high-resolution satellite images from a variety of imaging sensors (e.g., worldview-2, Gaofen-2, and etc.) in total, but the weakness includes:
+*[Million-AID dataset](https://captain-whu.github.io/DiRS/)* has about one million aerial scene samples from high-resolution satellite images from a variety of imaging sensors (e.g., worldview-2, Gaofen-2, and etc.) in total, but the weakness includes:
 
 most of the samples in million-AID are annotated automatically or semi-automatically, i.e., without human-level supervision.
 
@@ -20,7 +20,7 @@ Besides, only about 10,000 samples have the publicly-available ground truth, whi
 
 This is the first dataset for the task of fine-grained land-cover scene classification. Different from conventional remote sensing scene classification datasets, such as ```UCM```, ```AID``` and ```NWPU```, the  
 
-## Cite the proposed Samba
+## Citation
 
 If you find this work useful for your research, please cite our work as follows:
 
