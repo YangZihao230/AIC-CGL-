@@ -38,6 +38,12 @@ In this work, the proposed ```FGLCD``` makes the following advancement compared 
 
 ![avatar](/framework.png)
 
+The training and inference command is:
+
+```python main.py --c configs/MTARSI_SwinT.yaml```
+
+Please remember to change the file folder to your own in the ```.yaml``` file.
+
 ## Citation
 
 If you find this work useful for your research, please cite our work as follows:
