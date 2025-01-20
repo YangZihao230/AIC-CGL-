@@ -72,6 +72,7 @@ If you find this work useful for your research, please cite our work as follows:
   author={Bi, Qi and Yi, Jingjun and Zhan, Haolan and Wei, Ji and Xia, Gui-Song},
   journal={IEEE Transactions on Image Processing},
   volume={34},
+  pages={394--409},
   year={2025}
 }
 ```
