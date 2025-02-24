@@ -69,7 +69,7 @@ If you find this work useful for your research, please cite our work as follows:
 ```BibTeX
 @article{bi2025universal,
   title={Universal Fine-grained Visual Categorization by Concept Guided Learning},
-  author={Bi, Qi and Zhou, Beichen and Wei, Ji and Xia, Gui-Song},
+  author={Bi, Qi and Zhou, Beichen and Ji, Wei and Xia, Gui-Song},
   journal={IEEE Transactions on Image Processing},
   volume={34},
   pages={394--409},
