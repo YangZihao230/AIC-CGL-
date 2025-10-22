@@ -8,10 +8,68 @@ import copy
 import torch
 import scipy
 
+from torch.utils.data import random_split, DataLoader
 from .randaug import RandAugment
 
-
 def build_loader(args):
+    train_set, val_set = None, None
+    train_loader, val_loader = None, None
+
+    # === 选择使用的Dataset类 ===
+    dataset_class = ImageDataset_FG if args.finegrain else ImageDataset
+
+    # === 构建训练集 ===
+    if args.train_root is not None:
+        full_train_set = dataset_class(
+            istrain=True,
+            root=args.train_root,
+            data_size=args.data_size,
+            return_index=True
+        )
+
+        # === 如果未提供独立验证集路径，则从训练集中划分 ===
+        if (args.val_root is None or args.val_root == "~"):
+            val_ratio = 0.1
+            total_size = len(full_train_set)
+            val_size = int(total_size * val_ratio)
+            train_size = total_size - val_size
+            train_set, val_set = random_split(
+                full_train_set,
+                [train_size, val_size],
+                generator=torch.Generator().manual_seed(42)
+            )
+            print(f"[dataset] Auto-split train/val: {train_size} train + {val_size} val samples")
+        else:
+            train_set = full_train_set
+
+    # === 如果有单独验证路径，则加载验证集 ===
+    if args.val_root is not None and args.val_root != "~":
+        val_set = dataset_class(
+            istrain=False,
+            root=args.val_root,
+            data_size=args.data_size,
+            return_index=True
+        )
+
+    # === 构建DataLoader ===
+    if train_set is not None:
+        train_loader = DataLoader(
+            train_set,
+            num_workers=args.num_workers,
+            shuffle=True,
+            batch_size=args.batch_size
+        )
+    if val_set is not None:
+        val_loader = DataLoader(
+            val_set,
+            num_workers=1,
+            shuffle=False,
+            batch_size=args.batch_size
+        )
+
+    return train_loader, val_loader
+
+'''def build_loader(args):
     train_set, train_loader = None, None
     if args.finegrain == False:
         if args.train_root is not None:
@@ -33,7 +91,7 @@ def build_loader(args):
             val_set = ImageDataset_FG(istrain=False, root=args.val_root, data_size=args.data_size, return_index=True)
             val_loader = torch.utils.data.DataLoader(val_set, num_workers=1, shuffle=True, batch_size=args.batch_size)
 
-    return train_loader, val_loader
+    return train_loader, val_loader'''
 
 def get_dataset(args):
     if args.finegrain == False:
