@@ -6,7 +6,7 @@ import wandb
 import warnings
 
 from models.builder import MODEL_GETTER
-from data.dataset_origin import build_loader
+from data.dataset import build_loader
 from utils.costom_logger import timeLogger
 from utils.config_utils import load_yaml, build_record_folder, get_args
 from utils.lr_schedule import cosine_decay, adjust_lr, get_lr

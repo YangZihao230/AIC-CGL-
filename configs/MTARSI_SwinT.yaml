@@ -2,7 +2,7 @@ project_name: MTARSI_swint
 exp_name: T2.0
 use_wandb: False
 wandb_entity: qbyjj
-train_root: D:\iLoveCoding\PythonCode\CGL\CGL\dataset\webfg400_train\
+train_root: D:\iLoveCoding\PythonCode\CGL\dataset\webfg400_train\
 val_root: ~
 data_size: 384
 num_workers: 1
@@ -32,5 +32,5 @@ lambda_s: 0.0
 lambda_n: 5.0
 lambda_c: 1.0
 update_freq: 2
-log_freq: 100
+log_freq: 10
 eval_freq: 10

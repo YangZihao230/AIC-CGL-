@@ -173,9 +173,10 @@ class ImageDataset(torch.utils.data.Dataset):
             label = self.data_infos[index]["label"]
 
             img = cv2.imread(image_path)
-            if img is None:
-                raise ValueError(f"Failed to read image: {image_path}")
-            img = img[:, :, ::-1]  # BGR -> RGB
+            if img is None or img.size == 0:
+                raise ValueError("Empty or unreadable image")
+
+            img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
             img = Image.fromarray(img)
             img = self.transforms(img)
 
@@ -184,10 +185,14 @@ class ImageDataset(torch.utils.data.Dataset):
             return img, label
 
         except Exception as e:
-            print(f"[warning] Skipped corrupted image: {self.data_infos[index]['path']} ({e})")
+            #if tries == 0:  # 避免同一张图多次重复打印警告
+            #    print(f"[warning] skipped image: {image_path} ({type(e).__name__}: {e})")
+
             if tries >= max_tries:
-                raise RuntimeError(f"Too many corrupted images in a row starting at index {index}")
-            new_index = (index + 1) % len(self.data_infos)
+                raise RuntimeError(f"Too many consecutive corrupted images (starting from {index})")
+
+            # 随机跳转而不是顺序 +1，避免坏图密集时陷入循环
+            new_index = (index + np.random.randint(1, 10)) % len(self.data_infos)
             return self.__getitem__(new_index, tries + 1)
 
     '''def __getitem__(self, index):
