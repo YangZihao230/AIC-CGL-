@@ -279,7 +279,7 @@ def build_vit16(pretrained: str = "./vit_base_patch16_224_miil_21k.pth",
                                    comb_proj_size = comb_proj_size)
 
 
-def build_swintransformer(pretrained: bool = True,
+def build_swintransformer(pretrained: bool = False, #控制预训练权重加载
                           num_selects: Union[dict, None] = None, 
                           img_size: int = 384,
                           use_fpn: bool = True,
