@@ -30,7 +30,7 @@ def get_args(with_deepspeed: bool=False):
     parser.add_argument("--train_root", default="", type=str) # "../NABirds/train/"
     parser.add_argument("--val_root", default="", type=str)
     parser.add_argument("--data_size", default=384, type=int)
-    parser.add_argument("--num_workers", default=8, type=int)
+    parser.add_argument("--num_workers", default=2, type=int)
     parser.add_argument("--batch_size", default=64, type=int)
 
     ### model

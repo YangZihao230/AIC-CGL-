@@ -8,6 +8,8 @@ from torch.utils.data import random_split, DataLoader, Dataset
 from typing import List, Dict, Optional
 from .randaug import RandAugment  # 保留原有依赖
 
+from concurrent.futures import ThreadPoolExecutor, as_completed
+
 # -------------------------- 新增：异常数据校验工具函数 --------------------------
 def is_valid_image(image_path: str) -> bool:
     """
@@ -68,12 +70,30 @@ class BaseImageDataset(Dataset):
         raise NotImplementedError("子类需实现 _get_data_infos 方法")
 
     def _filter_invalid_data(self, raw_infos: List[Dict[str, str]]) -> List[Dict[str, str]]:
-        """过滤异常数据：校验图片路径有效性和可读取性"""
+        """多线程过滤异常数据：并行校验图片有效性"""
         valid_infos = []
-        for info in raw_infos:
-            image_path = info["path"]
-            if is_valid_image(image_path):
-                valid_infos.append(info)
+        total = len(raw_infos)
+        print(f"[Dataset] 开始多线程过滤 {total} 个样本...")
+
+        # 多线程并行处理（线程数建议设为CPU核心数，如8核设8）
+        max_workers = min(16, os.cpu_count() or 4)  # 限制最大线程数，避免资源耗尽
+        with ThreadPoolExecutor(max_workers=max_workers) as executor:
+            # 提交所有校验任务：key=未来对象，value=原始信息
+            future_to_info = {executor.submit(is_valid_image, info["path"]): info for info in raw_infos}
+            
+            # 异步获取结果，按完成顺序处理
+            for i, future in enumerate(as_completed(future_to_info)):
+                info = future_to_info[future]
+                try:
+                    if future.result():  # 若校验通过
+                        valid_infos.append(info)
+                except Exception as e:
+                    print(f"[Error] 校验图片 {info['path']} 时出错：{str(e)}")
+                
+                # 打印进度（每1000个样本更新一次）
+                if (i + 1) % 1000 == 0 or (i + 1) == total:
+                    print(f"[Dataset] 过滤进度：{i+1}/{total}（有效样本：{len(valid_infos)}）")
+
         return valid_infos
 
     def __len__(self) -> int:
@@ -187,7 +207,7 @@ def build_loader(args):
             train_set,
             batch_size=args.batch_size,
             shuffle=True,
-            num_workers=min(args.num_workers, 8),  # 16核CPU建议设8（避免IO阻塞）
+            num_workers=max(args.num_workers, 8),  # 16核CPU建议设8（避免IO阻塞）
             pin_memory=True,  # 加速GPU数据传输（若使用GPU）
             collate_fn=collate_fn,  # 过滤无效样本
             drop_last=True  # 丢弃最后一个不完整的batch（避免训练不稳定）

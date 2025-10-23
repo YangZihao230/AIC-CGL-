@@ -5,7 +5,7 @@ wandb_entity: qbyjj
 train_root: /root/autodl-tmp/webfg400_train/train/
 val_root: ~
 data_size: 384
-num_workers: 8
+num_workers: 12
 batch_size: 12
 model_name: swin-t
 pretrained: ~
