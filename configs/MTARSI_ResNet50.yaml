@@ -2,8 +2,8 @@ project_name: MTARSI_res50
 exp_name: T2.0
 use_wandb: False
 wandb_entity: qbyjj
-train_root: E:/FineGrained/datasets/MTARSI/train/
-val_root: E:/FineGrained/datasets/MTARSI/val/
+train_root: /root/autodl-tmp/webfg400_train/train/
+val_root: ~
 data_size: 256
 num_workers: 1
 batch_size: 2
@@ -32,5 +32,5 @@ lambda_s: 0.0
 lambda_n: 5.0
 lambda_c: 1.0
 update_freq: 2
-log_freq: 100
+log_freq: 200
 eval_freq: 10
