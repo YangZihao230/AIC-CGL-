@@ -69,7 +69,7 @@ def build_loader(args):
 
     return train_loader, val_loader
 
-'''def build_loader(args):
+def build_loader(args):
     train_set, train_loader = None, None
     if args.finegrain == False:
         if args.train_root is not None:
@@ -91,8 +91,7 @@ def build_loader(args):
             val_set = ImageDataset_FG(istrain=False, root=args.val_root, data_size=args.data_size, return_index=True)
             val_loader = torch.utils.data.DataLoader(val_set, num_workers=1, shuffle=True, batch_size=args.batch_size)
 
-    return train_loader, val_loader'''
-
+    return train_loader, val_loader
 def get_dataset(args):
     if args.finegrain == False:
         if args.train_root is not None:
