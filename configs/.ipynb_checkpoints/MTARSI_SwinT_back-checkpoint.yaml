@@ -1,16 +1,16 @@
-project_name: MTARSI_res50
-exp_name: T2.0-resnet50
+project_name: MTARSI_swint_back
+exp_name: T2.0
 use_wandb: False
 wandb_entity: qbyjj
-train_root: /root/autodl-tmp/webfg400_train/train/
-val_root: ~
-data_size: 256
-num_workers: 8
-batch_size: 64
-model_name: resnet50
+train_root: E:/FineGrained/datasets/MTARSI/train/
+val_root: E:/FineGrained/datasets/MTARSI/val/
+data_size: 384
+num_workers: 1
+batch_size: 2
+model_name: swin-t
 pretrained: ~
 optimizer: SGD
-max_lr: 0.001
+max_lr: 0.0005
 wdecay: 0.0005
 max_epochs: 50
 warmup_batchs: 800
@@ -18,7 +18,7 @@ use_amp: True
 use_fpn: False
 fpn_size: 1536
 use_selection: False
-num_classes: 400
+num_classes: 20
 num_classes_coarse: 10
 finegrain: False
 num_selects: 
@@ -32,5 +32,5 @@ lambda_s: 0.0
 lambda_n: 5.0
 lambda_c: 1.0
 update_freq: 2
-log_freq: 200
+log_freq: 100
 eval_freq: 10
