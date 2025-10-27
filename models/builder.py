@@ -279,9 +279,9 @@ def build_vit16(pretrained: str = "./vit_base_patch16_224_miil_21k.pth",
                                    comb_proj_size = comb_proj_size)
 
 
-def build_swintransformer(pretrained: bool = True,
+def build_swintransformer(pretrained: bool = False,
                           num_selects: Union[dict, None] = None, 
-                          img_size: int = 384,
+                          img_size: int = 224,
                           use_fpn: bool = True,
                           fpn_size: int = 512,
                           proj_type: str = "Linear",
@@ -309,7 +309,9 @@ def build_swintransformer(pretrained: bool = True,
             'layer4':32
         }
 
-    backbone = timm.create_model('swin_large_patch4_window12_384_in22k', pretrained=pretrained)
+    backbone = timm.create_model('swin_tiny_patch4_window7_224', pretrained=pretrained)
+    if pretrained:
+        print("Using swin-t pretrained weights from timm")
 
     # print(backbone)
     # print(get_graph_node_names(backbone))

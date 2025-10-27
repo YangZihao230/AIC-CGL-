@@ -209,13 +209,13 @@ def train(args, epoch, model, scaler, amp_context, optimizer, schedule, train_lo
             optimizer.zero_grad()
 
         """ log (MISC) """
-        if (batch_id + 1) % args.log_freq == 0:
+        if args.use_wandb and ((batch_id + 1) % args.log_freq == 0):
             model.eval()
             msg = {}
             msg['info/epoch'] = epoch + 1
             msg['info/lr'] = get_lr(optimizer)
             cal_train_metrics(args, msg, outs, labels, batch_size)
-            print(msg)
+            wandb.log(msg)
 
         train_progress = (batch_id + 1) / total_batchs
         # print(train_progress, show_progress[progress_i])
@@ -233,6 +233,15 @@ def main(args, tlogger):
 
     best_acc = 0.0
     best_eval_name = "null"
+
+    if args.use_wandb:
+        wandb.init(entity=args.wandb_entity,
+                   project=args.project_name,
+                   name=args.exp_name,
+                   config=args)
+        wandb.run.summary["best_acc"] = best_acc
+        wandb.run.summary["best_eval_name"] = best_eval_name
+        wandb.run.summary["best_epoch"] = 0
 
     for epoch in range(start_epoch, args.max_epochs):
 
@@ -265,11 +274,17 @@ def main(args, tlogger):
                 tlogger.print("....BEST_ACC: {}% ({}%)".format(max(acc, best_acc), acc))
                 tlogger.print()
 
+            if args.use_wandb:
+                wandb.log(accs)
 
             if acc > best_acc:
                 best_acc = acc
                 best_eval_name = eval_name
                 torch.save(checkpoint, args.save_dir + "backup/best_"+ str(best_acc) + ".pt")
+            if args.use_wandb:
+                wandb.run.summary["best_acc"] = best_acc
+                wandb.run.summary["best_eval_name"] = best_eval_name
+                wandb.run.summary["best_epoch"] = epoch + 1
 
 
 if __name__ == "__main__":
