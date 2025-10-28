@@ -1,0 +1,9 @@
+1.第一次运行，由于AIC_SwinT_400.yaml-copy1设置的是max_epochs: 50轮，不够，修改至少为100轮，对应学习率和max_lr: 0.005和warmup_batchs: 1200都要适当修改
+2.根据实际显存修改
+    num_workers: 8
+    batch_size: 80 
+3.GPU12GB，3080ti第五十轮结束状态：
+    学习率大概0.00005左右，应该还能继续提升
+以上配置文件我修改为了AIC_SwinT_400.yaml-copy1, AIC_SwinT_400.yaml是断点续训用的配置文件（多训20轮，效果仅提升2%且有波动，lr从0.0002-0.000126，猜测学习率lr初始过大，从0.00005变化上升，再到0.0005可能比较好：参考50轮的状态lr=0.00005）
+    
+python main.py --c configs/AIC_SwinT_400.yaml-copy1
